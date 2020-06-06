@@ -93,6 +93,21 @@ classdef TestROI < matlab.unittest.TestCase
             
         end
 
+
+        function testROI_multiple( obj )
+            % Verify that ROI calculation can be applied to multiple
+            % regions. listOfROIs is defined as described in nirs.modules.ApplyROI
+
+            % Module calculation
+            job = nirs.modules.ApplyROI();
+            job.listOfROIs(1,:) = array2table({[1 1],[1 2],'First'});
+            job.listOfROIs(2,:) = array2table({[1 1],[1 2],'Second'});
+            job.weighted = true;          
+            res = job.run( obj.data1 );
+        
+        end
+
+
     end
     
 end
